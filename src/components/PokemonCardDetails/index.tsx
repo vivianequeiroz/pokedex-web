@@ -1,6 +1,7 @@
 import { FunctionComponent } from 'react';
 import ArrowLeftIcon from '../../assets/ArrowLeft.svg';
 import { Pokemon } from '../../contracts/Pokemon';
+import { Link } from 'react-router-dom';
 
 type PokemonCardDetailsProps = {
   pokemon: Pokemon;
@@ -13,7 +14,9 @@ export const PokemonCardDetails: FunctionComponent<PokemonCardDetailsProps> = ({
     <div className="flex flex-col justify-between items-center rounded-lg p-1 bg-green-400 gap-20 max-w-sm">
       <header className="flex justify-between items-center p-4 w-full">
         <div className="flex justify-between items-center gap-4">
-          <img src={ArrowLeftIcon} alt="go back" className="h-4 text-white" />
+          <Link to="/">
+            <img src={ArrowLeftIcon} alt="go back" className="h-4 text-white" />
+          </Link>
           <h1 className="text-2xl font-bold text-white">{pokemon.name}</h1>
         </div>
         <p className="text-white text-sm font-bold">#{pokemon.id}</p>
