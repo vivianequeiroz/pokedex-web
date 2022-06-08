@@ -134,11 +134,11 @@ export const Home: FunctionComponent = () => {
   ];
 
   return (
-    <main className="bg-gray-50">
+    <main className="flex flex-col gap-8 bg-gray-50 p-4">
       <h1>
         <Logomark />
       </h1>
-      <ul className="flex flex-wrap justify-around gap-4">
+      <ul className="flex flex-wrap justify-between gap-4">
         {pokemons.map((pokemon) => (
           <li key={pokemon.id}>
             <PokemonCard pokemon={pokemon} />
