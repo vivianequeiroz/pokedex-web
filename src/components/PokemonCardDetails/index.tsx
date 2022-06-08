@@ -26,7 +26,7 @@ export const PokemonCardDetails: FunctionComponent<PokemonCardDetailsProps> = ({
     <motion.div
       className="flex flex-col justify-between items-center rounded-lg p-1 gap-20 max-w-sm
       min-w-sm"
-      animate={{ y: [0, 100, 0] }}
+      animate={{ y: [0, 20, 0] }}
       style={{
         backgroundColor: color,
       }}
@@ -34,11 +34,19 @@ export const PokemonCardDetails: FunctionComponent<PokemonCardDetailsProps> = ({
       <header className="flex justify-between items-center p-4 w-full">
         <div className="flex justify-between items-center gap-4">
           <Link to="/">
-            <img src={ArrowLeftIcon} alt="go back" className="h-4 text-white" />
+            <motion.img
+              src={ArrowLeftIcon}
+              alt="go back"
+              className="h-4 text-white"
+              layoutId={`${pokemon.name}-img`}
+            />
           </Link>
-          <h1 className="text-2xl font-bold text-white capitalize">
+          <motion.h1
+            className="text-2xl font-bold text-white capitalize"
+            layoutId={`${pokemon.name}-text`}
+          >
             {pokemon.name}
-          </h1>
+          </motion.h1>
         </div>
         <p className="text-white text-sm font-bold">#{pokemon.id}</p>
       </header>
