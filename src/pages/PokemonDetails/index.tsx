@@ -3,7 +3,11 @@ import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 import { Logomark } from '../../components/Logomark';
 import { PokemonCardDetails } from '../../components/PokemonCardDetails';
-import { getPokemonByName } from '../../services/FetchPokemon';
+import { Spinner } from '../../components/Spinner';
+import {
+  getPokemonByName,
+  getPokemonSpeccyByName,
+} from '../../services/FetchPokemon';
 
 type PokemonDetailsParams = {
   name: string;
@@ -11,16 +15,23 @@ type PokemonDetailsParams = {
 
 export const PokemonDetails: FunctionComponent = () => {
   const { name } = useParams<PokemonDetailsParams>();
-  const queryResult = useQuery(['pokemon', name], () =>
+
+  const { data, isLoading } = useQuery(['pokemon', name], () =>
     getPokemonByName(String(name)),
   );
 
-  console.log(queryResult?.data);
+  getPokemonSpeccyByName;
+
+  const { data: speccyData, isLoading: isLoadingSpeccy } = useQuery(
+    ['pokemon-speccy', name],
+    () => getPokemonSpeccyByName(String(name)),
+  );
 
   return (
     <main className="flex flex-col items-center justify-center h-screen gap-4 bg-gray-100">
-      <div className="flex flex-col justify-between items-center rounded-lg p-1 bg-white gap-20 max-w-sm">
-        <PokemonCardDetails pokemon={queryResult?.data!} />
+      <div className="flex flex-col justify-between items-center rounded-lg bg-white gap-20 max-w-sm p-4">
+        {isLoading || (isLoadingSpeccy && <Spinner />)}
+        {data && <PokemonCardDetails pokemon={data} speccy={speccyData} />}
       </div>
     </main>
   );
