@@ -12,7 +12,7 @@ export const Home: FunctionComponent = () => {
       <h1>
         <Logomark />
       </h1>
-      <ul className="flex flex-wrap justify-between gap-4">
+      <ul className="flex flex-wrap justify-center gap-4">
         {data?.map((pokemon, index) => (
           <li key={index}>
             <PokemonCard pokemon={pokemon} />

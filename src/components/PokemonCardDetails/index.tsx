@@ -44,7 +44,7 @@ export const PokemonCardDetails: FunctionComponent<PokemonCardDetailsProps> = ({
       </header>
       <div
         className="flex flex-col justify-between items-center p-4 w-full
-        bg-white rounded-lg relative pt-20 gap-4"
+        bg-white rounded-lg relative pt-28 gap-4"
       >
         <img
           className="h-60 absolute -top-28"
@@ -81,12 +81,16 @@ export const PokemonCardDetails: FunctionComponent<PokemonCardDetailsProps> = ({
           Base Stats
         </h2>
         <ul className="flex flex-col justify-between items-start w-full">
-          <li>
-            <span className="text-green-500 font-bold">HP</span>: 45
-          </li>
           {pokemon.stats.map((stat) => (
             <li key={stat.stat.name}>
-              <span className="text-green-500 font-bold">{stat.stat.name}</span>
+              <span
+                className="text-green-500 font-bold uppercase"
+                style={{
+                  color,
+                }}
+              >
+                {stat.stat.name}
+              </span>
               : {stat.base_stat}
             </li>
           ))}
