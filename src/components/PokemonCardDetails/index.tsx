@@ -2,6 +2,7 @@ import { FunctionComponent } from 'react';
 import ArrowLeftIcon from '../../assets/ArrowLeft.svg';
 import { Pokemon } from '../../contracts/Pokemon';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 type PokemonCardDetailsProps = {
   pokemon: Pokemon;
@@ -11,7 +12,10 @@ export const PokemonCardDetails: FunctionComponent<PokemonCardDetailsProps> = ({
   pokemon,
 }) => {
   return (
-    <div className="flex flex-col justify-between items-center rounded-lg p-1 bg-green-400 gap-20 max-w-sm">
+    <motion.div
+      className="flex flex-col justify-between items-center rounded-lg p-1 bg-green-400 gap-20 max-w-sm"
+      animate={{ y: [0, 100, 0] }}
+    >
       <header className="flex justify-between items-center p-4 w-full">
         <div className="flex justify-between items-center gap-4">
           <Link to="/">
@@ -57,6 +61,6 @@ export const PokemonCardDetails: FunctionComponent<PokemonCardDetailsProps> = ({
           ))}
         </ul>
       </div>
-    </div>
+    </motion.div>
   );
 };
