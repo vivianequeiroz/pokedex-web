@@ -1,6 +1,10 @@
 import { Poke, Pokemon, Pokemons } from '../../contracts/Pokemon';
 import { PokeSpeccy } from '../../contracts/PokemonSpeccy';
 
+export type getAllProps = {
+  offset?: number;
+};
+
 export async function getPokemonByName(name: string): Promise<Pokemon> {
   try {
     console.log('getPokemonByName', name);
@@ -38,11 +42,16 @@ export async function getPokemonSpeccyByName(
   }
 }
 
-export async function getAllPokemon(): Promise<Pokemon[]> {
+export async function getAllPokemon({
+  offset = 0,
+}: getAllProps): Promise<Pokemon[]> {
   try {
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/`, {
-      method: 'GET',
-    });
+    const response = await fetch(
+      `https://pokeapi.co/api/v2/pokemon/?offset=${offset}`,
+      {
+        method: 'GET',
+      },
+    );
 
     const data = (await response.json()) as Pokemons;
 
