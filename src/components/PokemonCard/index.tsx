@@ -3,7 +3,7 @@ import { Pokemon } from '../../contracts/Pokemon';
 import { Link } from 'react-router-dom';
 
 type PokemonCardProps = {
-  pokemon: Pokemon;
+  pokemon: Pick<Pokemon, 'id' | 'name' | 'image'>;
 };
 
 export const PokemonCard: FunctionComponent<PokemonCardProps> = ({
@@ -12,7 +12,7 @@ export const PokemonCard: FunctionComponent<PokemonCardProps> = ({
   return (
     <article className="flex border-green-500 border-4 rounded-lg overflow-hidden max-w-xs h-52">
       <Link
-        to={`/pokemon/${pokemon.name}`}
+        to={`/pokemon/${String(pokemon.name).toLowerCase()}`}
         className="flex flex-col flex-1 justify-between items-center overflow-hidden"
       >
         <img src={pokemon.image} alt={pokemon.name} className="h-52" />
