@@ -14,6 +14,7 @@ export const PokemonDetails: FunctionComponent = () => {
   const queryResult = useQuery(['pokemon', name], () =>
     getPokemonByName(String(name)),
   );
+
   console.log(queryResult?.data);
 
   return (

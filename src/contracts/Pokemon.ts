@@ -10,6 +10,26 @@ export interface Poke {
   url: string;
 }
 
+export type PokeType =
+  | 'grass'
+  | 'poison'
+  | 'fire'
+  | 'water'
+  | 'electric'
+  | 'ground'
+  | 'flying'
+  | 'psychic'
+  | 'bug'
+  | 'rock'
+  | 'ghost'
+  | 'dragon'
+  | 'dark'
+  | 'steel'
+  | 'fairy'
+  | 'normal'
+  | 'fighting'
+  | 'ice';
+
 export interface Pokemon {
   abilities: Ability[];
   base_experience: number;
@@ -38,7 +58,7 @@ export interface Ability {
 }
 
 export interface Species {
-  name: string;
+  name: PokeType;
   url: string;
 }
 

@@ -1,22 +1,40 @@
 import { FunctionComponent } from 'react';
 import { Pokemon } from '../../contracts/Pokemon';
 import { Link } from 'react-router-dom';
+import { forceGetTailwindColorsByType } from '../../utils/getColorByType';
+import tailwindColors from 'tailwindcss/colors';
 
 type PokemonCardProps = {
-  pokemon: Pick<Pokemon, 'id' | 'name' | 'image'>;
+  pokemon: Pick<Pokemon, 'id' | 'name' | 'types'>;
 };
 
 export const PokemonCard: FunctionComponent<PokemonCardProps> = ({
   pokemon,
 }) => {
   return (
-    <article className="flex border-green-500 border-4 rounded-lg overflow-hidden max-w-xs h-52">
+    <article
+      className={`flex border-4 rounded-lg overflow-hidden max-w-xs h-52`}
+      style={{
+        borderColor: forceGetTailwindColorsByType(pokemon.types[0].type.name),
+      }}
+    >
       <Link
         to={`/pokemon/${String(pokemon.name).toLowerCase()}`}
         className="flex flex-col flex-1 justify-between items-center overflow-hidden"
       >
-        <img src={pokemon.image} alt={pokemon.name} className="h-52" />
-        <footer className="flex justify-center items-center bg-green-500 border-green-500 border-2 w-full text-white text-2xl">
+        <img
+          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
+          alt={pokemon.name}
+          className="h-52"
+        />
+        <footer
+          className={`flex justify-center items-center w-full text-white text-2xl`}
+          style={{
+            backgroundColor: forceGetTailwindColorsByType(
+              pokemon.types[0].type.name,
+            ),
+          }}
+        >
           <p className="text-center capitalize">{pokemon.name}</p>
         </footer>
       </Link>
