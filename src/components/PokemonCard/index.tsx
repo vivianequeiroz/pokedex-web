@@ -17,7 +17,7 @@ export const PokemonCard: FunctionComponent<PokemonCardProps> = ({
       >
         <img src={pokemon.image} alt={pokemon.name} className="h-52" />
         <footer className="flex justify-center items-center bg-green-500 border-green-500 border-2 w-full text-white text-2xl">
-          <p>{pokemon.name}</p>
+          <p className="text-center capitalize">{pokemon.name}</p>
         </footer>
       </Link>
     </article>

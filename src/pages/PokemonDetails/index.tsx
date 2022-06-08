@@ -17,18 +17,10 @@ export const PokemonDetails: FunctionComponent = () => {
   console.log(queryResult?.data);
 
   return (
-    <main>
-      <h2>
-        <Logomark />
-      </h2>
-      {/* <PokemonCardDetails
-        pokemon={{
-          id: queryResult.data!.id,
-          name: queryResult.data!.name,
-          image: queryResult.data!.image,
-          stats: queryResult.data!.stats,
-        }}
-      /> */}
+    <main className="flex flex-col items-center justify-center h-screen gap-4 bg-gray-100">
+      <div className="flex flex-col justify-between items-center rounded-lg p-1 bg-white gap-20 max-w-sm">
+        <PokemonCardDetails pokemon={queryResult?.data!} />
+      </div>
     </main>
   );
 };
