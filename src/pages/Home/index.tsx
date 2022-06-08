@@ -1,5 +1,6 @@
 import { FunctionComponent } from 'react';
 import { Link } from 'react-router-dom';
+import { Logomark } from '../../components/Logomark';
 import { PokemonCard } from '../../components/PokemonCard';
 
 export const Home: FunctionComponent = () => {
@@ -134,7 +135,9 @@ export const Home: FunctionComponent = () => {
 
   return (
     <main className="bg-gray-50">
-      <h1>Home</h1>
+      <h1>
+        <Logomark />
+      </h1>
       <ul className="flex flex-wrap justify-around gap-4">
         {pokemons.map((pokemon) => (
           <li key={pokemon.id}>
