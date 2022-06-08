@@ -1,28 +1,37 @@
-import { Pokemon } from "../../contracts/Pokemon";
-
-export async function getAllPokemon(): Promise<Pokemon[]> {
-  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/`, {
-    method: 'GET'
-  })
-    .then(res => res.json())
-    .catch(err => console.warn(err));
-
-  console.log('getAllPokemon', response);
-
-  return response.results;
-}
+import { Poke, Pokemon, Pokemons } from '../../contracts/Pokemon';
 
 export async function getPokemonByName(name: string): Promise<Pokemon> {
-  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`, {
-    method: 'GET'
-  })
-    .then(res => res.json())
-    .catch(err => console.warn(err));
+  try {
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`, {
+      method: 'GET',
+    });
 
-  console.log('getPokemonByName', response);
+    const data = (await response.json()) as Pokemon;
 
-  return response;
+    return data;
+  } catch (error) {
+    console.warn(error);
+    throw error;
+  }
 }
 
+export async function getAllPokemon(): Promise<Pokemon[]> {
+  try {
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/`, {
+      method: 'GET',
+    });
 
+    const data = (await response.json()) as Pokemons;
 
+    console.log('getAllPokemon', response);
+
+    const pokemons = await Promise.all(
+      data.results.map((pokemon: Poke) => getPokemonByName(pokemon.name)),
+    );
+
+    return pokemons;
+  } catch (error) {
+    console.warn(error);
+    throw error;
+  }
+}
