@@ -58,7 +58,7 @@ export const forceGetTailwindColorsByType = (
   type: PokeType,
 ): TailwindColors => {
   const pokemonColorByType: Record<PokeType, string> = {
-    normal: tailwindColors.gray[500],
+    normal: tailwindColors.gray['500'],
     fire: tailwindColors.red['500'],
     water: tailwindColors.blue['500'],
     electric: tailwindColors.yellow['500'],

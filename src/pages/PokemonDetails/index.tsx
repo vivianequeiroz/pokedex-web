@@ -1,7 +1,6 @@
 import { FunctionComponent } from 'react';
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
-import { Logomark } from '../../components/Logomark';
 import { PokemonCardDetails } from '../../components/PokemonCardDetails';
 import { Spinner } from '../../components/Spinner';
 import {

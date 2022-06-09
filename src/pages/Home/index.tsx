@@ -3,7 +3,6 @@ import { useQuery } from 'react-query';
 import { Logomark } from '../../components/Logomark';
 import { PokemonCard } from '../../components/PokemonCard';
 import { Spinner } from '../../components/Spinner';
-import { Pokemon } from '../../contracts/Pokemon';
 import { getAllPokemon } from '../../services/FetchPokemon';
 
 export const Home: FunctionComponent = () => {
@@ -29,7 +28,7 @@ export const Home: FunctionComponent = () => {
         <Logomark />
       </h1>
       {isLoading && <Spinner />}
-      <ul className="flex flex-wrap justify-center gap-4">
+      <ul className="flex flex-wrap justify-between gap-4">
         {data?.map((pokemon, index) => (
           <li key={index}>
             <PokemonCard pokemon={pokemon} />

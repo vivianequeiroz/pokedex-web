@@ -21,7 +21,6 @@ export const PokemonCardDetails: FunctionComponent<PokemonCardDetailsProps> = ({
   const about =
     speccy?.flavor_text_entries[0].flavor_text ??
     'Unkown data about this pokemon';
-  console.log(pokemon);
   return (
     <motion.div
       className="flex flex-col justify-between items-center rounded-lg p-1 gap-20 max-w-sm
@@ -34,12 +33,7 @@ export const PokemonCardDetails: FunctionComponent<PokemonCardDetailsProps> = ({
       <header className="flex justify-between items-center p-4 w-full">
         <div className="flex justify-between items-center gap-4">
           <Link to="/">
-            <motion.img
-              src={ArrowLeftIcon}
-              alt="go back"
-              className="h-4 text-white"
-              layoutId={`${pokemon.name}-img`}
-            />
+            <img src={ArrowLeftIcon} alt="go back" className="h-4 text-white" />
           </Link>
           <motion.h1
             className="text-2xl font-bold text-white capitalize"
@@ -48,15 +42,16 @@ export const PokemonCardDetails: FunctionComponent<PokemonCardDetailsProps> = ({
             {pokemon.name}
           </motion.h1>
         </div>
-        <p className="text-white text-sm font-bold">#{pokemon.id}</p>
+        <p className="text-white text-2xl font-bold">#{pokemon.id}</p>
       </header>
       <div
         className="flex flex-col justify-between items-center p-4 w-full
         bg-white rounded-lg relative pt-28 gap-4"
       >
-        <img
+        <motion.img
           className="h-60 absolute -top-28"
           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
+          layoutId={`${pokemon.name}-img`}
         />
         <ul className="flex justify-center items-center gap-4 w-full text-white font-bold">
           {pokemon.types.map((type) => (
