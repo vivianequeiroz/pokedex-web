@@ -41,13 +41,14 @@ export const Home: FunctionComponent = () => {
       <h1>
         <Logomark />
       </h1>
-      {/* {isLoading && <Spinner />} */}
+      {isFetchingNextPage && <Spinner />}
       {data?.pages?.map((page) => (
         <motion.ul
           className="flex flex-wrap justify-between gap-4"
           initial="hidden"
           animate="visible"
           variants={list}
+          key={String(page.pageParam)}
         >
           {page.pokemons?.map((pokemon, index) => (
             <motion.li key={index} variants={item}>
@@ -56,14 +57,13 @@ export const Home: FunctionComponent = () => {
           ))}
         </motion.ul>
       ))}
-
+      {isFetchingNextPage && <Spinner />}
       {hasNextPage && (
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           onClick={handleLoadMore}
           disabled={isFetchingNextPage}
         >
-          {isFetchingNextPage && <Spinner />}
           {isFetchingNextPage ? 'Loading...' : 'Load next'}
         </button>
       )}
