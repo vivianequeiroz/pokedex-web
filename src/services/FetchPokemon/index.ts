@@ -42,12 +42,13 @@ export async function getPokemonSpeccyByName(
   }
 }
 
-export async function getAllPokemon({
-  offset = 0,
-}: getAllProps): Promise<Pokemon[]> {
+export async function getAllPokemon(
+  pageParam: number = 0,
+): Promise<{ pokemons: Pokemon[]; pageParam: number } & Pokemons> {
   try {
+    console.log('getAllPokemonoffset', pageParam);
     const response = await fetch(
-      `https://pokeapi.co/api/v2/pokemon/?offset=${offset}`,
+      `https://pokeapi.co/api/v2/pokemon/?offset=${pageParam}`,
       {
         method: 'GET',
       },
@@ -61,7 +62,11 @@ export async function getAllPokemon({
       data.results.map((pokemon: Poke) => getPokemonByName(pokemon.name)),
     );
 
-    return pokemons;
+    return {
+      pokemons,
+      ...data,
+      pageParam,
+    };
   } catch (error) {
     console.warn(error);
     throw error;

@@ -28,7 +28,6 @@ export const PokemonCard: FunctionComponent<PokemonCardProps> = ({
           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
           alt={pokemon.name}
           className="h-52"
-          layoutId={`${pokemon.name}-img`}
         />
         <footer
           className={`flex justify-center items-center w-full text-white text-2xl`}
@@ -36,12 +35,7 @@ export const PokemonCard: FunctionComponent<PokemonCardProps> = ({
             backgroundColor: color,
           }}
         >
-          <motion.p
-            className="text-center capitalize"
-            layoutId={`${pokemon.name}-text`}
-          >
-            {pokemon.name}
-          </motion.p>
+          <motion.p className="text-center capitalize">{pokemon.name}</motion.p>
         </footer>
       </Link>
     </article>
