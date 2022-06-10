@@ -19,8 +19,6 @@ export const PokemonDetails: FunctionComponent = () => {
     getPokemonByName(String(name)),
   );
 
-  getPokemonSpeccyByName;
-
   const { data: speccyData, isLoading: isLoadingSpeccy } = useQuery(
     ['pokemon-speccy', name],
     () => getPokemonSpeccyByName(String(name)),
